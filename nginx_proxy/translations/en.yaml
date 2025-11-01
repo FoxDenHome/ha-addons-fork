@@ -7,13 +7,6 @@ configuration:
     name: HSTS
     description: >-
       Value for the HSTS HTTP header to send. If empty, the header is not sent.
-  certfile:
-    name: Certificate File
-    description: >-
-      The certificate file to use in the `/ssl` directory.
-  keyfile:
-    name: Private Key File
-    description: Private Private Key File to use in the `/ssl` directory.
   cloudflare:
     name: CloudFlare
     description: >-

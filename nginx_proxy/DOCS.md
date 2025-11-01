@@ -35,8 +35,6 @@ Add-on configuration:
 
 ```yaml
 domain: home.example.com
-certfile: fullchain.pem
-keyfile: privkey.pem
 hsts: "max-age=31536000; includeSubDomains"
 customize:
   active: false
@@ -50,13 +48,9 @@ real_ip_from: []
 
 The server's fully qualified domain name to use for the proxy.
 
-### Option: `certfile` (required)
+### Option: `email` (required)
 
-The certificate file to use in the `/ssl` directory. Keep filename as-is if you used default settings to create the certificate with the [Duck DNS](https://github.com/home-assistant/addons/tree/master/duckdns) add-on.
-
-### Option: `keyfile` (required)
-
-Private key file to use in the `/ssl` directory.
+E-Mail to register ACME account with.
 
 ### Option: `hsts` (required)
 
