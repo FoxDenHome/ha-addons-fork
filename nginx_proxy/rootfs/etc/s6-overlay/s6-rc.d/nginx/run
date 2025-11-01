@@ -51,7 +51,13 @@ if bashio::config.true 'cloudflare'; then
     fi
 fi
 
+resolvers="$(cat /etc/resolv.conf | grep '^nameserver ' | cut -d' ' -f2 | xargs)"
+echo "resolver ${resolvers};" > /etc/nginx/resolver.conf
+
+mkdir -p /ssl/acme
+chown -R nginx:nginx /ssl/acme
+chmod 700 /ssl/acme
+
 # start server
 bashio::log.info "Running nginx..."
-stat "/ssl/$(bashio::config 'certfile')" -c %y > /tmp/certificate_timestamp
-exec nginx -c /etc/nginx.conf < /dev/null
+exec nginx -g 'daemon off;' -e stderr -c /etc/nginx.conf < /dev/null

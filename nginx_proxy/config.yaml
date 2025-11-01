@@ -1,26 +1,24 @@
 ---
 version: 3.14.0
 hassio_api: true
-slug: nginx_proxy
-name: NGINX Home Assistant SSL proxy
-description: An SSL/TLS proxy
-url: https://github.com/home-assistant/addons/tree/master/nginx_proxy
+slug: foxden_nginx_proxy
+name: FoxDen nginx + acme.js
+description: FoxDen nginx + acme.js
+url: https://github.com/FoxDenHome/ha-addons-fork/tree/master/nginx_proxy
 arch:
   - armhf
   - armv7
   - aarch64
   - amd64
   - i386
-image: homeassistant/{arch}-addon-nginx_proxy
 init: false
 map:
-  - ssl
+  - ssl:rw
   - share
 options:
   domain: null
+  email: null
   hsts: max-age=31536000; includeSubDomains
-  certfile: fullchain.pem
-  keyfile: privkey.pem
   cloudflare: false
   customize:
     active: false
@@ -29,12 +27,13 @@ options:
   real_ip_from: []
 ports:
   443/tcp: 443
-  80/tcp: null
+  444/tcp: 444
+  80/tcp: 80
+  81/tcp: 81
 schema:
   domain: str
+  email: str
   hsts: str
-  certfile: str
-  keyfile: str
   cloudflare: bool
   customize:
     active: bool
